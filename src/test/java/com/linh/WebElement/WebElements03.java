@@ -47,7 +47,7 @@ public class WebElements03 {
         //Get Attribute
 
         System.out.println(driver.findElement(By.xpath("//input[@id='company']")).getAttribute("value"));
-
+        driver.close();
         driver.quit();
 
     }
