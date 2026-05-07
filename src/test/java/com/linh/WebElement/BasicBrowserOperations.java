@@ -13,10 +13,7 @@ public class BasicBrowserOperations {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath("//input[@type =\"email\"]")).sendKeys("admin@example.com");
-        driver.findElement(By.xpath("//input[@type =\"password\"]")).sendKeys("123456");
-        driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
-        Thread.sleep(2000);
+
 
         //navigate to a page
         driver.navigate().to("http://anhtester.com");
@@ -33,7 +30,24 @@ public class BasicBrowserOperations {
         // navigate to next page
         driver.navigate().forward();
 
+        // Get the title of the page
+        String title = driver.getTitle();
+        System.out.println("Page title: " + title);
+
+        // Get the current URL
+        String url = driver.getCurrentUrl();
+        System.out.println("Page URL: " + url);
+
+        // Get the current page HTML source
+        String html = driver.getPageSource();
+        System.out.println("Page HTML: " + html);
+
+        System.out.println(html.contains("<button type=\"button\""));
+
+
         driver.quit();
+
+
 
 
 
