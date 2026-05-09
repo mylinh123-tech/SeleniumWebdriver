@@ -1,4 +1,4 @@
-package com.linh.WebElement;
+package com.linh.Browser_Cookies;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;

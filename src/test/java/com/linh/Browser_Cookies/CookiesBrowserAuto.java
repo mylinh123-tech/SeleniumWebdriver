@@ -1,4 +1,4 @@
-package com.linh.WebElement;
+package com.linh.Browser_Cookies;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -6,9 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Set;
 
 public class CookiesBrowserAuto {
