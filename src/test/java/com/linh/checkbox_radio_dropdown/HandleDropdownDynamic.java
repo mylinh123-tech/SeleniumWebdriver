@@ -11,11 +11,11 @@ public class HandleDropdownDynamic {
         WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
         driver.get("https://techydevs.com/demos/themes/html/listhub-demo/listhub/index.html");
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         //Click vào dropdown Category
         driver.findElement(By.xpath("//span[text() = 'Select a Category']")).click();
