@@ -3,7 +3,7 @@
 <suite name="Regression Test" verbose="1">
     <test name="Login page with Chrome">
         <classes>
-           <class name="com.linh.Bai9TestNG.SeleniumTestNG"></class>
+            <class name="com.linh.Bai10_Annotations.DemoAnnotations"></class>
 
         </classes>
     </test>
@@ -11,7 +11,7 @@
 
     <test name="Login page with Firebox">
         <classes>
-            <class name="com.linh.Bai10_Annotations.DemoAnnotations"></class>
+            <class name="com.linh.Bai10_Annotations.DemoAnnotations_2"></class>
 
         </classes>
     </test>
