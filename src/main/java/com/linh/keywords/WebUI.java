@@ -11,6 +11,7 @@ import javax.swing.plaf.PanelUI;
 import java.time.Duration;
 
 public class WebUI {
+    private static int Wait_time = 10;
     public static void clickElement (WebDriver driver, By locator){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator));
@@ -23,13 +24,13 @@ public class WebUI {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
 
-        js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator));
+        js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator), Wait_time);
         driver.findElement(locator).click();
 
     }
     public static void setText(WebDriver driver, By locator, String text){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator));
+        js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator), Wait_time);
         driver.findElement(locator).sendKeys(text);
     }
     public static void setText(WebDriver driver, By locator, String text, int seconds){
