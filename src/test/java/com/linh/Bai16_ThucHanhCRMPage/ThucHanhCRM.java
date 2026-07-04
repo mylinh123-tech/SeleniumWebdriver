@@ -30,6 +30,8 @@ public class ThucHanhCRM extends BaseTest {
         Assert.assertTrue(checkDashboard, "LOGIN FAIL, DASHBOARD PAGE DOES NOT DISPLAY YET");
     }
 
+
+
     @Test
     public void testLoginFailWithEmailInvalid(){
         driver.get("https://crm.anhtester.com/admin");
