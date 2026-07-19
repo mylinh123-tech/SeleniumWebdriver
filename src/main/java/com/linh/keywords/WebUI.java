@@ -1,9 +1,6 @@
 package com.linh.keywords;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,6 +23,17 @@ public class WebUI {
 
         js.executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator), Wait_time);
         driver.findElement(locator).click();
+
+    }
+
+    public static void clickElement (WebDriver driver, WebElement element, int seconds){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        js.executeScript("arguments[0].style.border='3px solid red'", element, Wait_time);
+        element.click();
 
     }
     public static void setText(WebDriver driver, By locator, String text){
@@ -52,11 +60,37 @@ public class WebUI {
 
     }
 
+    public static boolean isElementPresent (WebDriver driver, WebElement element){
+        try{
+            element.isDisplayed();
+
+        }catch(NoSuchElementException ex)
+        {
+            return false;
+        }
+        return true;
+
+    }
+
     public static boolean isElementPresent (WebDriver driver, By locator, int seconds){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         try{
             driver.findElement(locator).isDisplayed();
+
+        }catch(NoSuchElementException ex)
+        {
+            return false;
+        }
+        return true;
+
+    }
+
+    public static boolean isElementVisible (WebDriver driver, WebElement element, int seconds){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        try{
+            element.isDisplayed();
 
         }catch(NoSuchElementException ex)
         {

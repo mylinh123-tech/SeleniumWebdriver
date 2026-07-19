@@ -1,15 +1,12 @@
-package com.linh.Bai17PageObjectModel.pages;
+package com.linh.Bai21_PageNavigation.pages;
 
 import com.linh.constants.ConfigData;
 import com.linh.keywords.WebUI;
-import com.linh.locatorsCRM.LocatorsCRMPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v146.page.Page;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -94,13 +91,15 @@ public class LoginPage extends BasePage {
         clickLoginButton();
 
     }
-    public void loginCRM() {
+    public DashBoardPage loginCRM() {
 
         driver.get(ConfigData.LoginURL);// Goi class Config
         setEmail(ConfigData.EMAIL_ADMIN);
         setPassword(ConfigData.PASSWORD_ADMIN);
         clickLoginButton();
         verifyLoginSuccess();
+        return new DashBoardPage (driver);
     }
+
 
 }

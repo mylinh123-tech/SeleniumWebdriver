@@ -1,11 +1,9 @@
-package com.linh.Bai17PageObjectModel.testcases;
+package com.linh.Bai21_PageNavigation.testcases;
 
-import com.linh.Bai17PageObjectModel.pages.BasePage;
-import com.linh.Bai17PageObjectModel.pages.DashBoardPage;
-import com.linh.Bai17PageObjectModel.pages.LoginPage;
-import com.linh.Bai17PageObjectModel.pages.ProjectsPage;
+import com.linh.Bai21_PageNavigation.pages.DashBoardPage;
+import com.linh.Bai21_PageNavigation.pages.LoginPage;
+import com.linh.Bai21_PageNavigation.pages.ProjectsPage;
 import com.linh.common.BaseTest;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,14 +14,12 @@ public class DashBoardTest extends BaseTest {
     @BeforeMethod
     public void setUp(){
         loginPage = new LoginPage(driver);
-        dashboardPage = new DashBoardPage(driver);
-        projectsPage = new ProjectsPage(driver);
     }
     @Test
     public void testQuickStaticTotal(){
-        loginPage.loginCRM();
+        dashboardPage = loginPage.loginCRM();
         dashboardPage.verifyNavigateToDashBoardPage();
-        dashboardPage.clickProjectsMenu();
+        projectsPage = dashboardPage.clickProjectsMenu();
         projectsPage.verifyNaviageToProjectPage();
         int  notStartedTotal = projectsPage.getTotalNotStarted();
         int inProgressTotal = projectsPage.getTotalInProgress();
@@ -32,7 +28,7 @@ public class DashBoardTest extends BaseTest {
         int finishedTotal = projectsPage.getTotalFinished();
         int projectTotal = notStartedTotal + inProgressTotal +onHoldTotal+cancelledTotal+finishedTotal;
         System.out.println("Total project: "+projectTotal);
-        projectsPage.clickDashboardMenu();
+        dashboardPage = projectsPage.clickDashboardMenu();
         dashboardPage.verifyNavigateToDashBoardPage();
         dashboardPage.verifyTotalProjectsInprogress(inProgressTotal, projectTotal);
     }
