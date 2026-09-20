@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Demo Param">
+    <parameter name="browser" value="chrome"/> <!--Pram toan cuc-->
+   <test name="Params">
+      <parameter name="number1" value= "10" />
+      <parameter name="number2" value= "78" />
+       <parameter name="number3" value= "2" />
+      <classes>
+         <class name= "com.linh.Bai26_Parameters_MultiBrowser.DemoParameters"/>
+      </classes>
+   </test>
+
+    <test name="Multi Browser with firefox ">
+        <parameter name="browser" value= "firefox" />
+
+        <classes>
+            <class name= "com.linh.Bai26_Parameters_MultiBrowser.testcases.LoginTest">
+                <methods>
+                    <include name="testLoginCRM_Success()"/>
+
+                </methods>
+
+            </class>
+
+        </classes>
+    </test>
+
+    <test name="Multi Browser with Chrome ">
+       <!-- Khong truyen param no se lay param toan cuc-->
+
+        <classes>
+            <class name= "com.linh.Bai26_Parameters_MultiBrowser.testcases.LoginTest">
+                <methods>
+                    <include name="testLoginCRM_Success()"/>
+
+                </methods>
+
+            </class>
+
+        </classes>
+    </test>
+
+</suite>

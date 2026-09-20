@@ -1,14 +1,10 @@
 package com.linh.Bai15_Waits;
 
 import com.linh.common.BaseTest;
-import com.linh.keywords.WebUI;
+import com.linh.keywords.ActionKeyword;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class DemoExplicitWait extends BaseTest {
     @Test
@@ -28,12 +24,12 @@ public class DemoExplicitWait extends BaseTest {
         wait2.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[normalize-space()='Login']")));
         driver.findElement(By.xpath("//span[normalize-space()='Login']")).click();*/
 
-        WebUI.setText(driver,By.id("iusername"),"admin_example",3);
-        WebUI.setText(driver,By.xpath("//input[@id='ipassword']"),"123456",3);
-        WebUI.clickElement(driver,By.xpath("//span[normalize-space()='Login']"),5);
+        ActionKeyword.setText(driver,By.id("iusername"),"admin_example",3);
+        ActionKeyword.setText(driver,By.xpath("//input[@id='ipassword']"),"123456",3);
+        ActionKeyword.clickElement(driver,By.xpath("//span[normalize-space()='Login']"),5);
 
         //Kiem tra element xuat hien hay khong
-        boolean isElementPresent = WebUI.isElementPresent(driver, By.xpath("//h6[normalize-space()='Welcome Admin Example']"),3);
+        boolean isElementPresent = ActionKeyword.isElementPresent(driver, By.xpath("//h6[normalize-space()='Welcome Admin Example']"),3);
         Assert.assertTrue(isElementPresent, "Login Fail");
 
 

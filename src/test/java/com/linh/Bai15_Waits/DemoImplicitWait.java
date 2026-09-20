@@ -1,7 +1,7 @@
 package com.linh.Bai15_Waits;
 
 import com.linh.common.BaseTest;
-import com.linh.keywords.WebUI;
+import com.linh.keywords.ActionKeyword;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,7 +22,7 @@ public class DemoImplicitWait extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //Bat dau tu day cho 5s //Neu de 0s -> reset co che wait
         driver.findElement(By.xpath("//span[normalize-space()='Login']")).click();
         //Kiem tra element co xuat hien khong
-        boolean isElementPresent = WebUI.isElementPresent(driver, By.xpath("//h6[normalize-space()='Welcome Admin Example']"));
+        boolean isElementPresent = ActionKeyword.isElementPresent(driver, By.xpath("//h6[normalize-space()='Welcome Admin Example']"));
         Assert.assertTrue(isElementPresent, "Login Fail");
 
 

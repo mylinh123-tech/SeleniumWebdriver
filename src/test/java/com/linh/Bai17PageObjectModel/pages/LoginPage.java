@@ -1,15 +1,12 @@
 package com.linh.Bai17PageObjectModel.pages;
 
 import com.linh.constants.ConfigData;
-import com.linh.keywords.WebUI;
-import com.linh.locatorsCRM.LocatorsCRMPage;
+import com.linh.keywords.ActionKeyword;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v146.page.Page;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -67,8 +64,8 @@ public class LoginPage extends BasePage {
     }
     public void verifyLoginFailWithEmailAndPasswordNull() {
 
-        boolean checkAlertRequiredEmail = WebUI.isElementPresent(driver, alertEmailRequiredMessage);
-        boolean checkAlertRequiredPassword = WebUI.isElementPresent(driver, alertPasswordRequiredMessage);
+        boolean checkAlertRequiredEmail = ActionKeyword.isElementPresent(driver, alertEmailRequiredMessage);
+        boolean checkAlertRequiredPassword = ActionKeyword.isElementPresent(driver, alertPasswordRequiredMessage);
         Assert.assertTrue(checkAlertRequiredEmail, "Login failed! The Email Error Message is not present.");
         Assert.assertTrue(checkAlertRequiredPassword, "Login failed! The Password Error Message is not present.");
         Assert.assertEquals(driver.getCurrentUrl(),"https://crm.anhtester.com/admin/authentication","The current URL is incorrect ");

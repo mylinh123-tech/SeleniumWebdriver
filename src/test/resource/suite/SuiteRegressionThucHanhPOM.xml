@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression Test" verbose="1">
+    <test name="Test on Chrome">
+        <classes>
+           <class name ="com.linh.Bai24_25_VietHamChung_WebUI.testcases.LoginTest"/>
+            <class name ="com.linh.Bai24_25_VietHamChung_WebUI.testcases.DashBoardTest"/>
+            <class name ="com.linh.Bai24_25_VietHamChung_WebUI.testcases.CustomersTest"/>
+            <class name ="com.linh.Bai24_25_VietHamChung_WebUI.testcases.ProjectsTest"/>
+
+
+
+        </classes>
+    </test>
+
+
+</suite>

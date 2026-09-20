@@ -1,8 +1,7 @@
 package com.linh.Bai20_PageFactory.pages;
 
 import com.linh.constants.ConfigData;
-import com.linh.keywords.WebUI;
-import org.openqa.selenium.By;
+import com.linh.keywords.ActionKeyword;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -98,8 +97,8 @@ public class LoginPage extends BasePage {
     }
     public void verifyLoginFailWithEmailAndPasswordNull() {
 
-        boolean checkAlertRequiredEmail = WebUI.isElementVisible(driver, alertEmailRequiredMessage, 10);
-        boolean checkAlertRequiredPassword = WebUI.isElementVisible(driver, alertPasswordRequiredMessage, 10);
+        boolean checkAlertRequiredEmail = ActionKeyword.isElementVisible(driver, alertEmailRequiredMessage, 10);
+        boolean checkAlertRequiredPassword = ActionKeyword.isElementVisible(driver, alertPasswordRequiredMessage, 10);
         Assert.assertTrue(checkAlertRequiredEmail, "Login failed! The Email Error Message is not present.");
         Assert.assertTrue(checkAlertRequiredPassword, "Login failed! The Password Error Message is not present.");
         Assert.assertEquals(driver.getCurrentUrl(),"https://crm.anhtester.com/admin/authentication","The current URL is incorrect ");

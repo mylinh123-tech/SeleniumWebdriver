@@ -1,11 +1,9 @@
 package com.linh.Bai16_ThucHanhCRMPage;
 
 import com.linh.common.BaseTest;
-import com.linh.keywords.WebUI;
+import com.linh.keywords.ActionKeyword;
 import com.linh.locatorsCRM.LocatorsCRMPage;
-import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class ThucHanhCRM extends BaseTest {
@@ -17,16 +15,16 @@ public class ThucHanhCRM extends BaseTest {
 //        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("123456");
 //        driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
 //
-//        WebUI.setText(driver, By.xpath("//input[@type='email']"),"admin@example.com",10);
-//        WebUI.setText(driver, By.xpath("//input[@type='password']"),"123456",10);
-//        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Login']"),10);
+//        ActionKeyword.setText(driver, By.xpath("//input[@type='email']"),"admin@example.com",10);
+//        ActionKeyword.setText(driver, By.xpath("//input[@type='password']"),"123456",10);
+//        ActionKeyword.clickElement(driver, By.xpath("//button[normalize-space()='Login']"),10);
 
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123456");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123456");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
 
-        boolean checkDashboard = WebUI.isElementPresent(driver, LocatorsCRMPage.menuDashboard);
+        boolean checkDashboard = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.menuDashboard);
         Assert.assertTrue(checkDashboard, "LOGIN FAIL, DASHBOARD PAGE DOES NOT DISPLAY YET");
     }
 
@@ -35,11 +33,11 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithEmailInvalid(){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin123@example.com",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123456");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin123@example.com",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123456");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertErrorMessage = WebUI.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
+        boolean checkAlertErrorMessage = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
         Assert.assertTrue(checkAlertErrorMessage, "Login failed! Alert Error message is not displayed.");
         Assert.assertEquals(driver.findElement(LocatorsCRMPage.alertErrorMessage).getText(), "Invalid email or password");
 
@@ -47,11 +45,11 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithPasswordInvalid(){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertErrorMessage = WebUI.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
+        boolean checkAlertErrorMessage = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
         Assert.assertTrue(checkAlertErrorMessage, "Login failed! Alert Error message is not displayed.");
         Assert.assertEquals(driver.findElement(LocatorsCRMPage.alertErrorMessage).getText(), "Invalid email or password");
 
@@ -60,11 +58,11 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithEmailNull(){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertErrorMessage = WebUI.isElementPresent(driver, LocatorsCRMPage.alertEmailRequiredMessage);
+        boolean checkAlertErrorMessage = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertEmailRequiredMessage);
         Assert.assertTrue(checkAlertErrorMessage, "Login failed! Alert Error message is not displayed.");
         Assert.assertEquals(driver.findElement(LocatorsCRMPage.alertEmailRequiredMessage).getText(), "The Email Address field is required.");
 
@@ -72,11 +70,11 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithPasswordNull(){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin@example.com",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertErrorMessage = WebUI.isElementPresent(driver, LocatorsCRMPage.alertPasswordRequiredMessage);
+        boolean checkAlertErrorMessage = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertPasswordRequiredMessage);
         Assert.assertTrue(checkAlertErrorMessage, "Login failed! Alert Error message is not displayed.");
         Assert.assertEquals(driver.findElement(LocatorsCRMPage.alertPasswordRequiredMessage).getText(), "The Password field is required.");
 
@@ -85,12 +83,12 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithEmailAndPasswordNull(){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertRequiredEmail = WebUI.isElementPresent(driver, LocatorsCRMPage.alertEmailRequiredMessage);
-        boolean checkAlertRequiredPassword = WebUI.isElementPresent(driver, LocatorsCRMPage.alertPasswordRequiredMessage);
+        boolean checkAlertRequiredEmail = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertEmailRequiredMessage);
+        boolean checkAlertRequiredPassword = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertPasswordRequiredMessage);
         Assert.assertTrue(checkAlertRequiredEmail, "Login failed! The Email Error Message is not present.");
         Assert.assertTrue(checkAlertRequiredPassword, "Login failed! The Password Error Message is not present.");
         Assert.assertEquals(driver.getCurrentUrl(),"https://crm.anhtester.com/admin/authentication","The current URL is incorrect ");
@@ -100,9 +98,9 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithEmailFormatInvalid_01 (){
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin@",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123456");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin@",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123456");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
         //Handle HTML5 validation message
         //https://anhtester.com/blog/how-to-get-html5-validation-message-with-selenium-b654.html
@@ -113,11 +111,11 @@ public class ThucHanhCRM extends BaseTest {
     @Test
     public void testLoginFailWithEmailFormatInvalid_02() {
         driver.get("https://crm.anhtester.com/admin");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail,"admin@example",10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword,"123456");
-        WebUI.clickElement(driver, LocatorsCRMPage.buttonLogin);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail,"admin@example",10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword,"123456");
+        ActionKeyword.clickElement(driver, LocatorsCRMPage.buttonLogin);
 
-        boolean checkAlertErrorMessage = WebUI.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
+        boolean checkAlertErrorMessage = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.alertErrorMessage);
         Assert.assertTrue(checkAlertErrorMessage, "Login failed! Alert Error message is not displayed.");
         Assert.assertEquals(driver.findElement(LocatorsCRMPage.alertErrorMessage).getText(), "The Email Address field must contain a valid email address.");
 

@@ -1,7 +1,7 @@
 package com.linh.Bai16_ThucHanhCRMPage;
 
 import com.linh.common.BaseTest;
-import com.linh.keywords.WebUI;
+import com.linh.keywords.ActionKeyword;
 import com.linh.locatorsCRM.LocatorsCRMPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,23 +17,23 @@ public class ThucHanhCustomerCRM extends BaseTest {
     @BeforeMethod
     public void loginCRM() {
         driver.get("https://crm.anhtester.com/admin/authentication");
-        WebUI.setText(driver, LocatorsCRMPage.inputEmail, "admin@example.com", 10);
-        WebUI.setText(driver, LocatorsCRMPage.inputPassword, "123456");
-        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Login']"));
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputEmail, "admin@example.com", 10);
+        ActionKeyword.setText(driver, LocatorsCRMPage.inputPassword, "123456");
+        ActionKeyword.clickElement(driver, By.xpath("//button[normalize-space()='Login']"));
 
-        boolean checkDashboardMenu = WebUI.isElementPresent(driver, LocatorsCRMPage.menuDashboard, 5);
+        boolean checkDashboardMenu = ActionKeyword.isElementPresent(driver, LocatorsCRMPage.menuDashboard, 5);
         Assert.assertTrue(checkDashboardMenu, "Login Fail. Dashboard Menu is not present");
     }
 
     @Test(priority = 1)
     public void testAddNewCustomer() {
-        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Customers']"), 10);
-        boolean checkCustomerPage = WebUI.isElementPresent(driver, By.xpath("//span[normalize-space()='Customers Summary']"), 10);
+        ActionKeyword.clickElement(driver, By.xpath("//span[normalize-space()='Customers']"), 10);
+        boolean checkCustomerPage = ActionKeyword.isElementPresent(driver, By.xpath("//span[normalize-space()='Customers Summary']"), 10);
         Assert.assertTrue(checkCustomerPage, "Customer Page is not present.");
-        WebUI.clickElement(driver, By.xpath("//a[normalize-space()='New Customer']"), 10);
+        ActionKeyword.clickElement(driver, By.xpath("//a[normalize-space()='New Customer']"), 10);
 
         // Cho form load xong bang ham chung
-        if (!WebUI.isElementPresent(driver, By.id("company"), 10)) {
+        if (!ActionKeyword.isElementPresent(driver, By.id("company"), 10)) {
             throw new RuntimeException("Form Add Customer khong load duoc.");
         }
 
@@ -53,16 +53,16 @@ public class ThucHanhCustomerCRM extends BaseTest {
         System.out.println(companyName);
 
         // --- Tab "Customer Details" ---
-        WebUI.setText(driver, By.xpath("//input[@id='company']"), companyName, 10); // * bat buoc
-        WebUI.setText(driver, By.xpath("//input[@id='vat']"), vat);
-        WebUI.setText(driver, By.xpath("//input[@id='phonenumber']"), phone);
-        WebUI.setText(driver, By.xpath("//input[@id='website']"), website);
-        WebUI.setText(driver, By.xpath("//textarea[@id='address']"), address);
-        WebUI.setText(driver, By.xpath("//input[@id='city']"), city);
-        WebUI.setText(driver, By.xpath("//input[@id='state']"), state);
-        WebUI.setText(driver, By.xpath("//input[@id='zip']"), zip);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='company']"), companyName, 10); // * bat buoc
+        ActionKeyword.setText(driver, By.xpath("//input[@id='vat']"), vat);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='phonenumber']"), phone);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='website']"), website);
+        ActionKeyword.setText(driver, By.xpath("//textarea[@id='address']"), address);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='city']"), city);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='state']"), state);
+        ActionKeyword.setText(driver, By.xpath("//input[@id='zip']"), zip);
 
-        // Dropdown selectpicker -> dung helper cuc bo (WebUI chua ho tro)
+        // Dropdown selectpicker -> dung helper cuc bo (ActionKeyword chua ho tro)
         selectPickerByText("default_currency", currency);
         selectPickerByText("default_language", language);
         selectPickerByText("country", country);
@@ -70,16 +70,16 @@ public class ThucHanhCustomerCRM extends BaseTest {
         // Field "Group" la MULTI-select, id co dau ngoac: groups_in[]
         //selectPickerByText("groups_in[]", group);
 
-        WebUI.clickElement(driver, By.xpath("//button[@data-id='groups_in[]']"));
+        ActionKeyword.clickElement(driver, By.xpath("//button[@data-id='groups_in[]']"));
         sleep(1);
-        WebUI.setText(driver, By.xpath("//button[@data-id='groups_in[]']/following-sibling::div//input"), group);
+        ActionKeyword.setText(driver, By.xpath("//button[@data-id='groups_in[]']/following-sibling::div//input"), group);
         sleep(1);
-        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='" + group + "']"));
+        ActionKeyword.clickElement(driver, By.xpath("//span[normalize-space()='" + group + "']"));
         sleep(1);
-        WebUI.clickElement(driver, By.xpath("//button[@data-id='groups_in[]']"));
+        ActionKeyword.clickElement(driver, By.xpath("//button[@data-id='groups_in[]']"));
 
         // --- Save --- (co 2 nut "Save"; nut submit cua form co class 'only-save')
-        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Save and create contact']/following-sibling::button[normalize-space()='Save']"));
+        ActionKeyword.clickElement(driver, By.xpath("//button[normalize-space()='Save and create contact']/following-sibling::button[normalize-space()='Save']"));
 
         // ====== VERIFY KET QUA SAU KHI SAVE ======
         // Sau khi Save thanh cong, Perfex redirect sang trang profile (load lai form
@@ -121,7 +121,7 @@ public class ThucHanhCustomerCRM extends BaseTest {
      * Verify gia tri cua mot field text (input/textarea) qua thuoc tinh 'value'.
      */
     private void verifyInputValue(By locator, String expected, String fieldName) {
-        Assert.assertTrue(WebUI.isElementPresent(driver, locator, 10),
+        Assert.assertTrue(ActionKeyword.isElementPresent(driver, locator, 10),
                 "Khong tim thay field '" + fieldName + "' tren trang profile");
         String actual = driver.findElement(locator).getAttribute("value");
         Assert.assertEquals(actual, expected,
@@ -134,7 +134,7 @@ public class ThucHanhCustomerCRM extends BaseTest {
      */
     private void verifyPickerValue(String selectId, String expected, String fieldName) {
         By button = By.xpath("//button[@data-id='" + selectId + "']");
-        Assert.assertTrue(WebUI.isElementPresent(driver, button, 10),
+        Assert.assertTrue(ActionKeyword.isElementPresent(driver, button, 10),
                 "Khong tim thay field '" + fieldName + "' tren trang profile");
         String actual = driver.findElement(button).getAttribute("title");
         Assert.assertEquals(actual, expected,

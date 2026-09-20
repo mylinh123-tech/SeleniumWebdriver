@@ -1,14 +1,12 @@
 package com.linh.Bai14_JavaScriptExecutor;
 
 import com.linh.common.BaseTest;
-import com.linh.keywords.WebUI;
+import com.linh.keywords.ActionKeyword;
 import com.linh.utils.LocalStorageUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.sql.Driver;
 
 public class DemoJSExecutor extends BaseTest {
     @Test
@@ -100,11 +98,11 @@ public class DemoJSExecutor extends BaseTest {
 //        driver.findElement(By.id("password")).sendKeys("123456");
 //        driver.findElement(By.xpath("//button[@type = 'submit']")).click();
 
-        WebUI.setText(driver, By.id("email"), "admin@example.com");
+        ActionKeyword.setText(driver, By.id("email"), "admin@example.com");
         sleep(1);
-        WebUI.setText(driver, By.id("password"), "123456");
+        ActionKeyword.setText(driver, By.id("password"), "123456");
         sleep(1);
-        WebUI.clickElement(driver, By.xpath("//button[@type = 'submit']"));
+        ActionKeyword.clickElement(driver, By.xpath("//button[@type = 'submit']"));
         sleep(2);
 
     }

@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Demo Parallel Testing By Classes" verbose="1" parallel="tests">
+    <test name="Demo Parallel Testing By Classes 1" parallel="classes" >
+       <!-- thread-count = 3 chay chi 3 tsc 1 lượt-->
+        <!--method chay song song cac @test trong class chi dinh-->
+        <classes>
+            <class name="com.linh.Bai27_ParallelExecution.ParallelTest"/>
+            <class name="com.linh.Bai27_ParallelExecution.ParallelTest2"/>
+            <class name="com.linh.Bai27_ParallelExecution.ParallelTest3"/>
+        </classes>
+    </test>
+
+    <test name="Demo Parallel Testing By Classes 2" parallel="classes" >
+        <classes>
+            <class name="com.linh.Bai27_ParallelExecution.ParallelTest"/>
+            <class name="com.linh.Bai27_ParallelExecution.ParallelTest2"/>
+
+        </classes>
+    </test>
+</suite>

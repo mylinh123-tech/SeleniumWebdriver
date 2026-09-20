@@ -1,0 +1,46 @@
+package com.linh.Bai27_ParallelExecution;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+
+public class ParallelTest2 {
+
+    @Test
+    public void FirefoxTest2() throws InterruptedException {
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.get("https://anhtester.com");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("(//a[normalize-space() ='Đăng nhập'])[2]")).click();
+        driver.quit();
+    }
+
+    @Test
+    public void EdgeTest2() throws InterruptedException {
+        WebDriver driver = new EdgeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.get("https://anhtester.com");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("(//a[normalize-space() ='Đăng ký'])[2]")).click();
+        driver.quit();
+    }
+
+    @Test
+    public void ChromeTest2() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.get("https://anhtester.com");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[normalize-space() ='Liên hệ']")).click();
+        driver.quit();
+    }
+}
